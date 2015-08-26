@@ -13,6 +13,7 @@ class KapostBridgeLogViewer extends LeftAndMain {
         parent::init();
         
         Requirements::css('kapost-bridge-logger/css/KapostBridgeLogViewer.css');
+        Requirements::javascript('kapost-bridge-logger/javascript/KapostBridgeLogViewer.js');
     }
     
     /**
@@ -25,10 +26,14 @@ class KapostBridgeLogViewer extends LeftAndMain {
                                 new HeaderField('LogHeader', _t('KapostBridgeLogViewer.VIEWING_ENTRY', '_Viewing Log Entry: {datetime}', array('datetime'=>$record->dbObject('Created')->FormatFromSettings())), 3),
                                 new ReadonlyField('Method', _t('KapostBridgeLogViewer.METHOD', '_Method')),
                                 ToggleCompositeField::create('RequestData', _t('KapostBridgeLogViewer.KAPOST_REQUEST', '_Kapost Request'), new FieldList(
-                                                                                                ReadonlyField::create('RequestFormatted', '')->setTemplate('KapostBridgeLogField')
+                                                                                                ReadonlyField::create('RequestFormatted', '')
+                                                                                                    ->setTemplate('KapostBridgeLogField')
+                                                                                                    ->addExtraClass('log-contents cms-panel-layout')
                                                                                             ))->setHeadingLevel(3),
                                 ToggleCompositeField::create('ResponseData', _t('KapostBridgeLogViewer.SILVERSTRIPE_RESPONSE', '_SilverStripe Response'), new FieldList(
-                                                                                                ReadonlyField::create('ResponseFormatted', '')->setTemplate('KapostBridgeLogField')
+                                                                                                ReadonlyField::create('ResponseFormatted', '')
+                                                                                                    ->setTemplate('KapostBridgeLogField')
+                                                                                                    ->addExtraClass('log-contents cms-panel-layout')
                                                                                             ))->setHeadingLevel(3)
                             );
         }else {
