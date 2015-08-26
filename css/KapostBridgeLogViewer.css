@@ -1,0 +1,46 @@
+.KapostBridgeLogViewer .cms-content-tools form {
+    border-bottom: 1px solid #D0D3D5;
+    
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    
+    box-shadow: 0 1px 0 rgba(245, 245, 245, 0.8);
+}
+
+.KapostBridgeLogViewer .cms-content-tools ul.logs {
+    margin: 8px -4px;
+}
+
+.KapostBridgeLogViewer .cms-content-tools ul.logs li {
+    border-bottom: 1px solid #CED7DC;
+}
+
+.KapostBridgeLogViewer .cms-content-tools ul.logs li a {
+    display: block;
+    
+    font-weight: bold;
+    color: #444444;
+    
+    padding: 3px 5px;
+    
+    line-height: 1.5em;
+}
+
+.KapostBridgeLogViewer .cms-content-tools ul.logs li a:hover, .KapostBridgeLogViewer .cms-content-tools ul.logs li a:active, .KapostBridgeLogViewer .cms-content-tools ul.logs li a.current {
+    background: #338DC1;
+    
+    color: #FFFFFF;
+    
+    text-decoration: none;
+}
+
+.KapostBridgeLogViewer .cms-content-tools ul.logs li a span {
+    font-weight: normal;
+    color: #B9BBBD;
+}
+
+.KapostBridgeLogViewer #RequestFormatted pre, .KapostBridgeLogViewer #ResponseFormatted pre {
+    max-width: 95%;
+    
+    overflow: auto;
+}

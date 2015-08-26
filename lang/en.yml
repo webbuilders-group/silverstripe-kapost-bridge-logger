@@ -1,0 +1,14 @@
+en:
+    KapostBridgeLogViewer:
+        MENUTITLE: "Kapost Bridge Logs"
+        VIEWING_ENTRY: "Viewing Log Entry: {datetime}"
+        METHOD: "Method"
+        KAPOST_REQUEST: "Kapost Request"
+        SILVERSTRIPE_RESPONSE: "SilverStripe Response"
+        FILTER_LOGS: "Filter Logs"
+        CALLED_METHOD: "Called Method"
+        START_DATE_TIME: "Start Date/Time"
+        END_DATE_TIME: "End Date/Time"
+        APPLY_FILTER: "Apply Filter"
+        RESET: "Reset"
+        LOGS: "Logs"

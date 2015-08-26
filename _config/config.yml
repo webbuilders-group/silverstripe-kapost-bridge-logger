@@ -1,0 +1,8 @@
+---
+Name: kapostbridgelogger
+After:
+    - "kapostbridge/*"
+---
+Injector:
+    KapostService:
+        class: "LoggedKapostService"

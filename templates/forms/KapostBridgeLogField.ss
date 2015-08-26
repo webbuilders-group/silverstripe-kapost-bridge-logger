@@ -1,0 +1,1 @@
+<pre id="$ID"<% if $extraClass %> class="$extraClass"<% end_if %>>$Value</pre>
