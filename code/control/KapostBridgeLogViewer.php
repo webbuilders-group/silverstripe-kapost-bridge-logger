@@ -17,7 +17,7 @@ class KapostBridgeLogViewer extends LeftAndMain {
     }
     
     /**
-     * @TODO
+     * Gets the form used for viewing a time log
      */
     public function getEditForm($id=null, $fields=null) {
         $record=$this->currentPage();
@@ -58,13 +58,28 @@ class KapostBridgeLogViewer extends LeftAndMain {
     }
     
     /**
-     * @TODO
+     * Handles requests to view logs
+     * @return {mixed} Returns PjaxResponseNegotiator if we're using ajax, 404 if we're using ajax and the response cannot be found, redirect if not found in a non-ajax request, and an array if found in an ajax request.
      */
     public function view() {
+        //If we're dealing with an ajax request return the form's html
         if(Director::is_ajax()) {
-            return $this->getEditForm()->forTemplate();
+            //If the log cannot be found 404
+            if(!$this->currentPage()) {
+                return $this->httpError(404);
+            }
+            
+            return $this->getResponseNegotiator()->respond($this->request);
         }
         
+        
+        //If the log cannot be found redirect to the main screen
+        if(!$this->currentPage()) {
+            return $this->redirect($this->Link());
+        }
+        
+        
+        //Other wise render normally
         return array();
     }
     

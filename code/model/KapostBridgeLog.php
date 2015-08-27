@@ -22,7 +22,8 @@ class KapostBridgeLog extends DataObject {
                             );
     
     /**
-     * @TODO
+     * Gets the title of this log which is a combination of the method called and the date/time
+     * @return {string} Title of the log entry
      */
     public function getTitle() {
         return $this->Method.': '.$this->dbObject('Created')->FormatFromSettings();
