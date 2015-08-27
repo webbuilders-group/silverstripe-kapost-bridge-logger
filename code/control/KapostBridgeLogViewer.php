@@ -36,6 +36,17 @@ class KapostBridgeLogViewer extends LeftAndMain {
                                                                                                     ->addExtraClass('log-contents cms-panel-layout')
                                                                                             ))->setHeadingLevel(3)
                             );
+            
+            
+            $refObj=$record->ReferenceObject;
+            if(!empty($refObj) && $refObj!==false && $refObj->exists()) {
+                if(method_exists($refObj, 'CMSEditLink')) {
+                    $fields->insertBefore(new KapostLogLinkField('CMSEditLink', _t('KapostBridgeLogViewer.REFERENCED_OBJECT', '_Referenced Object'), $refObj->CMSEditLink(), _t('KapostBridgeLogViewer.VIEW_REFERENCED_OBJECT', '_View Referenced Object')), 'RequestData');
+                }else if($refObj instanceof File) {
+                    $refObjLink=Controller::join_links(LeftAndMain::config()->url_base, AssetAdmin::config()->url_segment, 'EditForm/field/File/item', $refObj->ID, 'edit');
+                    $fields->insertBefore(new KapostLogLinkField('CMSEditLink', _t('KapostBridgeLogViewer.REFERENCED_OBJECT', '_Referenced Object'), $refObjLink, _t('KapostBridgeLogViewer.VIEW_REFERENCED_OBJECT', '_View Referenced Object')), 'RequestData');
+                }
+            }
         }else {
             $fields=new FieldList();
         }

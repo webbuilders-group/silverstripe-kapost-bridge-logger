@@ -12,3 +12,5 @@ en:
         APPLY_FILTER: "Apply Filter"
         RESET: "Reset"
         LOGS: "Logs"
+        REFERENCED_OBJECT: "Referenced Object"
+        VIEW_REFERENCED_OBJECT: "View Referenced Object"
