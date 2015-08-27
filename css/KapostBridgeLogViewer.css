@@ -11,8 +11,14 @@
     margin: 8px -4px;
 }
 
-.KapostBridgeLogViewer .cms-content-tools ul.logs li {
-    border-bottom: 1px solid #CED7DC;
+.KapostBridgeLogViewer .cms-content-tools ul.logs li + li {
+    border-top: 1px solid #CED7DC;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content ul + ul {
+    border-top: 1px solid #CED7DC;
+    
+    margin-top: -8px;
 }
 
 .KapostBridgeLogViewer .cms-content-tools ul.logs li a {
