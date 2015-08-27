@@ -1,10 +1,13 @@
-.KapostBridgeLogViewer .cms-content-tools form {
-    border-bottom: 1px solid #D0D3D5;
-    
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    
-    box-shadow: 0 1px 0 rgba(245, 245, 245, 0.8);
+.KapostBridgeLogViewer .cms-content-tools .log-search-form {
+    margin-bottom: 16px;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .log-search-form .Actions {
+    padding: 0;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .log-search-form .resetformaction {
+    margin-right: 0px;
 }
 
 .KapostBridgeLogViewer .cms-content-tools ul.logs {

@@ -1,4 +1,4 @@
-<div class="cms-content-tools west cms-panel cms-panel-layout cms-content-view kapost-logs-list" data-expandOnClick="true" data-layout-type="border">
+<div class="cms-content-tools west cms-panel cms-panel-layout cms-content-view kapost-logs-list" id="kapostbridgelogviewer-logs" data-expandOnClick="true" data-layout-type="border">
 	<div class="cms-panel-content center">
         <h3 class="cms-panel-header"><%t KapostBridgeLogViewer.LOGS "_Logs" %></h3>
         

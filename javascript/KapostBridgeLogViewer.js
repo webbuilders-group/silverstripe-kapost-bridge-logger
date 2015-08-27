@@ -46,5 +46,45 @@
                 return false;
             }
         });
+        
+        
+        $('.KapostBridgeLogViewer .cms-content-tools .log-search-form').entwine({
+            onsubmit: function(e) {
+                // Remove empty elements and make the URL prettier
+                var nonEmptyInputs,
+                    url;
+                
+                nonEmptyInputs=this.find(':input:not(:submit)').filter(function() {
+                    // Use fieldValue() from jQuery.form plugin rather than jQuery.val(),
+                    // as it handles checkbox values more consistently
+                    var vals = $.grep($(this).fieldValue(), function(val) { return (val);});
+                    return (vals.length);
+                });
+                
+                url=this.attr('action');
+                
+                if(nonEmptyInputs.length) {
+                    url=$.path.addSearchParams(url, nonEmptyInputs.serialize());
+                }
+                
+                var container=this.closest('.cms-container');
+                container.loadPanel(url, "", {}, true);
+                
+                return false;
+            }
+        });
+        
+        
+        $('.KapostBridgeLogViewer .cms-content-tools .log-search-form button[type=reset], .KapostBridgeLogViewer .cms-content-tools .log-search-form input[type=reset]').entwine({
+            onclick: function(e) {
+                e.preventDefault();
+                
+                var form=$(this).parents('form');
+                
+                form.clearForm();
+                form.find(".dropdown select").prop('selectedIndex', 0).trigger("liszt:updated"); // Reset chosen.js
+                form.submit();
+            }
+        });
     });
 })(jQuery);

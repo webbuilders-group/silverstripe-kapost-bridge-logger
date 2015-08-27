@@ -113,13 +113,13 @@ class KapostBridgeLogViewer extends LeftAndMain {
                                                                                     'metaWeblog.newMediaObject'=>'metaWeblog.newMediaObject',
                                                                                     'metaWeblog.newPost'=>'metaWeblog.newPost',
                                                                                     'system.listMethods'=>'system.listMethods'
-                                                                                ))->setEmptyString('---_Filter by Method---'),
+                                                                                ))->setEmptyString('--- '._t('KapostBridgeLogViewer.FILTER_BY_METHOD', '_Filter by Method').' ---'),
                             $startDate=new DatetimeField('LogStartDate', _t('KapostBridgeLogViewer.START_DATE_TIME', '_Start Date/Time')),
                             $endDate=new DatetimeField('LogEndDate', _t('KapostBridgeLogViewer.END_DATE_TIME', '_End Date/Time'))
                         );
         
-        $startDate->setConfig('showcalendar', true);
-        $endDate->setConfig('showcalendar', true);
+        $startDate->getDateField()->setConfig('showcalendar', true);
+        $endDate->getDateField()->setConfig('showcalendar', true);
         
         
         $actions=new FieldList(
@@ -129,7 +129,7 @@ class KapostBridgeLogViewer extends LeftAndMain {
         
         
         $form=new Form($this, 'LogsForm', $fields, $actions);
-        $form->addExtraClass('cms-search-form')
+        $form->addExtraClass('log-search-form')
             ->setFormMethod('GET')
             ->setFormAction($this->Link())
             ->disableSecurityToken()
@@ -137,7 +137,27 @@ class KapostBridgeLogViewer extends LeftAndMain {
         
         
         // Load the form with previously sent search data
-        $form->loadDataFrom($this->request->getVars());
+        $getVars=$this->request->getVars();
+        
+        //Workaround for start date field with no date or time
+        if(array_key_exists('LogStartDate', $getVars)) {
+            if(array_key_exists('date', $getVars['LogStartDate']) && !array_key_exists('time', $getVars['LogStartDate'])) {
+                $getVars['LogStartDate']['time']='00:00:00';
+            }else if(!array_key_exists('date', $getVars['LogStartDate']) && array_key_exists('time', $getVars['LogStartDate'])) {
+                unset($getVars['LogStartDate']); //Remove if there is no date present
+            }
+        }
+        
+        //Workaround for end date field with no date or time
+        if(array_key_exists('LogEndDate', $getVars)) {
+            if(array_key_exists('date', $getVars['LogEndDate']) && !array_key_exists('time', $getVars['LogEndDate'])) {
+                $getVars['LogEndDate']['time']='23:59:59';
+            }else if(!array_key_exists('date', $getVars['LogEndDate']) && array_key_exists('time', $getVars['LogEndDate'])) {
+                unset($getVars['LogEndDate']); //Remove if there is no date present
+            }
+        }
+        
+        $form->loadDataFrom($getVars);
         
         
         return $form;
@@ -156,7 +176,30 @@ class KapostBridgeLogViewer extends LeftAndMain {
 	 * @return {DataList} Data List pointing to the logs in the database
 	 */
     public function getLogs() {
-        return PaginatedList::create(KapostBridgeLog::get(), $this->request)->setPageLength(self::config()->log_page_length);
+        $logs=KapostBridgeLog::get();
+        
+        $filterFields=$this->LogsForm()->Fields();
+        
+        //Apply Called Method filter
+        $var=$filterFields->dataFieldByName('CalledMethod')->Value();
+        if(!empty($var)) {
+            $logs=$logs->filter('Method', Convert::raw2sql($var));
+        }
+        
+        //Apply Start Date Filter
+        $dateTimeField=$filterFields->dataFieldByName('LogStartDate');
+        $var=trim($dateTimeField->getDateField()->dataValue().' '.$dateTimeField->getTimeField()->dataValue());
+        if(!empty($var)) {
+            $logs=$logs->filter('Created:GreaterThan', Convert::raw2sql($var));
+        }
+        
+        //Apply End Date Filter
+        $var=$filterFields->dataFieldByName('LogEndDate')->Value();
+        if(!empty($var) && $var!=' 00:00:00') {
+            $logs=$logs->filter('Created:LessThan', Convert::raw2sql($var));
+        }
+        
+        return PaginatedList::create($logs, $this->request)->setPageLength(self::config()->log_page_length);
     }
     
     /**
