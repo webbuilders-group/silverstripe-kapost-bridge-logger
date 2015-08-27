@@ -15,20 +15,13 @@
         </fieldset>
     </div>
     
-    <div class="cms-content-actions cms-content-controls south">
-        <% if $Actions %>
+    <% if $Actions %>
+        <div class="cms-content-actions cms-content-controls south">
             <div class="Actions">
                 <% loop $Actions %>
                     $Field
                 <% end_loop %>
-                <% if $Controller.LinkPreview %>
-                    <a href="$Controller.LinkPreview" target="_cmsPreview" class="cms-preview-toggle-link ss-ui-button" data-icon="preview">
-                        <% _t('LeftAndMain.PreviewButton', 'Preview') %> &raquo;
-                    </a>
-                <% end_if %>
-                
-                <% include LeftAndMain_ViewModeSelector SelectID="preview-mode-dropdown-in-content" %>
             </div>
-        <% end_if %>
-    </div>
+        </div>
+    <% end_if %>
 </form>
