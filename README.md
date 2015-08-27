@@ -27,6 +27,9 @@ If you prefer you may also install manually:
 ```yml
 KapostBridgeLog:
     log_expire_days: 30 #Number of days that logs are kept
+
+KapostBridgeLogViewer:
+    log_page_length: 20 #Number of logs to include per page
 ```
 
 ## Extension Points

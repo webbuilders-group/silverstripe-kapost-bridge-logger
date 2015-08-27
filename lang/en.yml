@@ -14,3 +14,5 @@ en:
         LOGS: "Logs"
         REFERENCED_OBJECT: "Referenced Object"
         VIEW_REFERENCED_OBJECT: "View Referenced Object"
+        PREVIOUS_ENTRIES: "Previous Entries"
+        MORE_ENTRIES: "More Entries"

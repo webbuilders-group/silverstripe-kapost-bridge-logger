@@ -44,3 +44,35 @@
     
     overflow: auto;
 }
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination {
+    margin: 0;
+    
+    text-align: center;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content ul + .logs-pagination {
+    margin-top: 15px;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination + ul {
+    margin-bottom: 15px;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination .more-logs-link {
+    background: #D0D3D5;
+    
+    display: inline-block;
+    
+    color: #1F1F1F;
+    
+    padding: 6px 10px;
+    
+    border-radius: 4px;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination .more-logs-link:hover, .KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination .more-logs-link:active, .KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination .more-logs-link:focus {
+    background: #C2CDD4;
+    
+    text-decoration: none;
+}

@@ -4,11 +4,16 @@ class KapostBridgeLogViewer extends LeftAndMain {
     private static $url_segment='kapost-bridge-logs';
     private static $menu_priority=-0.5;
     private static $tree_class='KapostBridgeLog';
+    private static $log_page_length=20;
     
     private static $allowed_actions=array(
                                         'view'
                                     );
     
+    
+    /**
+     * Adds requirements needed for the log viewer
+     */
     public function init() {
         parent::init();
         
@@ -151,7 +156,24 @@ class KapostBridgeLogViewer extends LeftAndMain {
 	 * @return {DataList} Data List pointing to the logs in the database
 	 */
     public function getLogs() {
-        return KapostBridgeLog::get();
+        return PaginatedList::create(KapostBridgeLog::get(), $this->request)->setPageLength(self::config()->log_page_length);
+    }
+    
+    /**
+     * Gets the pjax response negotiator for this controller
+     * @return PjaxResponseNegotiator
+     */
+    public function getResponseNegotiator() {
+        if(!$this->responseNegotiator) {
+            parent::getResponseNegotiator();
+            
+            $controller=$this;
+            $this->responseNegotiator->setCallback('LogEntries', function() use(&$controller) {
+                                            						return $controller->renderWith('KapostBridgeLogViewer_LogsList');
+                                            					});
+        }
+        
+        return $this->responseNegotiator;
     }
 }
 ?>
