@@ -7,5 +7,9 @@
     
 	$Tools
     
-	$EditForm
+    <div class="cms-content center" data-layout-type="border">
+    	$EditForm
+        
+        $LogsPanel
+    </div>
 </div>

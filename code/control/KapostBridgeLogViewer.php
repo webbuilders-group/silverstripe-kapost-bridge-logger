@@ -59,7 +59,7 @@ class KapostBridgeLogViewer extends LeftAndMain {
         
         $form=new CMSForm($this, 'EditForm', $fields, new FieldList());
         $form->setResponseNegotiator($this->getResponseNegotiator());
-        $form->addExtraClass('cms-content center');
+        $form->addExtraClass('cms-edit-form center');
         $form->setAttribute('data-layout-type', 'border');
         $form->setTemplate($this->getTemplatesWithSuffix('_EditForm'));
         $form->setAttribute('data-pjax-fragment', 'CurrentForm');
