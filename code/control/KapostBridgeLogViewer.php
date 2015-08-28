@@ -1,5 +1,5 @@
 <?php
-class KapostBridgeLogViewer extends LeftAndMain {
+class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     private static $menu_icon='kapost-bridge-logger/images/icons/cms-icon.png';
     private static $url_segment='kapost-bridge-logs';
     private static $menu_priority=-0.5;
@@ -217,6 +217,24 @@ class KapostBridgeLogViewer extends LeftAndMain {
         }
         
         return $this->responseNegotiator;
+    }
+    
+    /**
+     * Provides the CMS_ACCESS_KapostBridgeLogViewer permission
+     * @return {array} Map describing the permission for this cms panel
+     */
+    public function providePermissions() {
+        return array(
+                    'CMS_ACCESS_KapostBridgeLogViewer'=>array(
+                                                            'name'=>_t(
+                                                                    'CMSMain.ACCESS',
+                                                                    "Access to '{title}' section",
+                                                                    "Item in permission selection identifying the admin section. Example: Access to 'Files & Images'",
+                                                                    array('title'=>_t('KapostBridgeLogViewer.MENUTITLE', 'Kapost Bridge Logs'))
+                                                                ),
+                                                            'category'=>_t('Permission.CMS_ACCESS_CATEGORY', 'CMS Access')
+                                                        )
+                );
     }
 }
 ?>
