@@ -85,3 +85,7 @@
     
     text-decoration: none;
 }
+
+.KapostBridgeLogViewer pre.log-contents {
+    font-family: Consolas, Monaco, monospace;
+}
