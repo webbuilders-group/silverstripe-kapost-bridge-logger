@@ -1,6 +1,6 @@
 Kapost Bridge Logger
 =================
-A wrapper for our SilverStripe Kapost Bridge module that logs all incoming requests.
+A wrapper for our SilverStripe Kapost Bridge module that logs all incoming requests to the kapost service.
 
 ## Maintainer Contact
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))

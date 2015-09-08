@@ -1,6 +1,6 @@
 {
     "name": "webbuilders-group/silverstripe-kapost-bridge-logger",
-    "description": "A wrapper for our SilverStripe Kapost Bridge module that logs all incoming requests",
+    "description": "A wrapper for our SilverStripe Kapost Bridge module that logs all incoming requests to the kapost service",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "kapost", "content authoring"],
     "license": "BSD-3-Clause",
