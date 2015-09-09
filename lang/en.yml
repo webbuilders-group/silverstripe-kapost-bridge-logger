@@ -17,3 +17,6 @@ en:
         VIEW_REFERENCED_OBJECT: "View Referenced Object"
         PREVIOUS_ENTRIES: "Previous Entries"
         MORE_ENTRIES: "More Entries"
+    LoggedKapostService:
+        PASSWORD_FILTERED: "PASSWORD FILTERED"
+        BITS_FILTERED: "BASE64 BITS FILTERED"

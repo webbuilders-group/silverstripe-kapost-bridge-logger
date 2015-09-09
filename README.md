@@ -1,5 +1,7 @@
 Kapost Bridge Logger
 =================
+[![Build Status](https://travis-ci.org/webbuilders-group/silverstripe-kapost-bridge.png)](https://travis-ci.org/webbuilders-group/silverstripe-kapost-bridge)
+
 A wrapper for our SilverStripe Kapost Bridge module that logs all incoming requests to the kapost service.
 
 ## Maintainer Contact

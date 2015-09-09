@@ -1,0 +1,24 @@
+language: php 
+php: 
+ - 5.3
+
+sudo: false
+
+notifications:
+  email:
+    - devs@webbuildersgroup.com
+
+env:
+ - DB=MYSQL CORE_RELEASE=3.1
+ - DB=PGSQL CORE_RELEASE=3.1
+ - DB=SQLITE3 CORE_RELEASE=3.1
+
+before_script:
+ - phpenv rehash
+ - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
+ - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
+ - cd ~/builds/ss
+
+script: 
+ - phpunit kapost-bridge/tests/KapostServiceTest #We run the Kapost Service Test from the kapost-bridge module to ensure we haven't broken the service
+ - phpunit kapost-bridge-logger/tests/ #Then we run the tests for this module

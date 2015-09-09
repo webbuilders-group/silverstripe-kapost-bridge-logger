@@ -15,11 +15,11 @@ class LoggedKapostService extends KapostService {
             if($xml) {
                 //Strip sensitive info from request
                 if(strpos($xml->methodName, 'metaWeblog.')===0 || strpos($xml->methodName, 'kapost.')===0) {
-                    $xml->params->param[2]->value->string='[PASSWORD FILTERED]';
+                    $xml->params->param[2]->value->string='['._t('LoggedKapostService.PASSWORD_FILTERED', '_PASSWORD FILTERED').']';
                     
                     //For metaWeblog.newMediaObject requests clear the bits for the file before writing
                     if($xml->methodName=='metaWeblog.newMediaObject') {
-                        $xml->params->param[3]->value->struct->member[2]->value->base64='[BASE64 BITS FILTERED]';
+                        $xml->params->param[3]->value->struct->member[2]->value->base64='['._t('LoggedKapostService.BITS_FILTERED', '_BASE64 BITS FILTERED').']';
                     }
                 }
                 
