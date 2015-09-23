@@ -6,7 +6,7 @@ class KapostBridgeLog extends DataObject {
                             'Response'=>'Text'
                          );
     
-    private static $default_sort='Created DESC';
+    private static $default_sort='Created DESC, ID DESC';
     
     /**
      * Time in days to expire the log entries
