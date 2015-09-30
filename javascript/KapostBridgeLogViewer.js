@@ -86,5 +86,42 @@
                 form.submit();
             }
         });
+        
+        
+        $('.KapostBridgeLogViewer .cms-content-fields .log-contents pre').entwine({
+            ondblclick: function(e) {
+                var preWidth=$(this).width();
+                var preHeight=$(this).height();
+                var textarea=$('<textarea class="log-contents" spellcheck="false"/>').width(preWidth).height(preHeight).val($(this).text());
+                
+                
+                //Generate the textarea
+                $(this).parent().append(textarea);
+                
+                
+                //Hide the pre
+                $(this).hide();
+                
+                
+                //Focus the textarea
+                textarea.click();
+            }
+        });
+        
+        $('.KapostBridgeLogViewer .cms-content-fields .log-contents textarea').entwine({
+            onclick: function(e) {
+                $(this).focus();
+                $(this)[0].select();
+                
+                return false;
+            },
+            onfocusout: function(e) {
+                //Re-display the pre
+                $(this).siblings('pre').show();
+                
+                //Remove self
+                $(this).remove();
+            }
+        });
     });
 })(jQuery);

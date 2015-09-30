@@ -54,6 +54,33 @@
     overflow: auto;
 }
 
+.KapostBridgeLogViewer #RequestFormatted textarea, .KapostBridgeLogViewer #ResponseFormatted textarea, .KapostBridgeLogViewer #RequestFormatted textarea:focus, .KapostBridgeLogViewer #ResponseFormatted textarea:focus {
+    background: transparent;
+    
+    font-family: monospace;
+    
+    max-width: none;
+    max-height: 500px;
+    
+    border: 0;
+    
+    padding: 0;
+    
+    white-space: pre;
+    
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    
+    resize: none;
+}
+
 .KapostBridgeLogViewer .cms-content-tools .cms-panel-content .logs-pagination {
     margin: 0;
     
