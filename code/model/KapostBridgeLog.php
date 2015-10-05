@@ -52,12 +52,15 @@ class KapostBridgeLog extends DataObject {
      * @return {string} Raw XML Request from Kapost
      */
     public function getRequestFormatted() {
-        $doc=new DomDocument('1.0');
-        $doc->preserveWhiteSpace=false;
-        $doc->formatOutput=true;
-        $doc->loadXML($this->Request);
-        
-        return $doc->saveXML();
+        $request=$this->Request;
+        if(!empty($request)) {
+            $doc=new DomDocument('1.0');
+            $doc->preserveWhiteSpace=false;
+            $doc->formatOutput=true;
+            $doc->loadXML($request);
+            
+            return $doc->saveXML();
+        }
     }
     
     /**
@@ -65,12 +68,15 @@ class KapostBridgeLog extends DataObject {
      * @return {string} Raw XML Response from SilverStripe
      */
     public function getResponseFormatted() {
-        $doc=new DomDocument('1.0');
-        $doc->preserveWhiteSpace=false;
-        $doc->formatOutput=true;
-        $doc->loadXML($this->Response);
-        
-        return $doc->saveXML();
+        $response=$this->Response;
+        if(!empty($response)) {
+            $doc=new DomDocument('1.0');
+            $doc->preserveWhiteSpace=false;
+            $doc->formatOutput=true;
+            $doc->loadXML($response);
+            
+            return $doc->saveXML();
+        }
     }
     
     /**

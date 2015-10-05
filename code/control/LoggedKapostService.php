@@ -28,13 +28,22 @@ class LoggedKapostService extends KapostService {
                 $logEntry=new KapostBridgeLog();
                 $logEntry->Method=$xml->methodName->__toString();
                 $logEntry->Request=$xml->asXML();
-                $logEntry->Response=($response instanceof SS_HTTPResponse ? $response->getBody():(is_string($response) ? $response:null));
+                $logEntry->Response=($response instanceof SS_HTTPResponse ? $this->cleanDebugInfo($response->getBody()):(is_string($response) ? $this->cleanDebugInfo($response):null));
                 $logEntry->write();
             }
         }catch(Exception $e) {}
         
         
         return $response;
+    }
+    
+    /**
+     * Strips the server debug information from the log
+     * @param {string} $xml XML String to be parsed
+     * @return {string} XML String with the debug info stripped out
+     */
+    protected function cleanDebugInfo($xml) {
+        return preg_replace('/<\!-- SERVER DEBUG INFO \(BASE64 ENCODED\)\:(\s+)([A-Za-z0-9\/=+]*)(\s+)-->/s', '', $xml);
     }
 }
 ?>
