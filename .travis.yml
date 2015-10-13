@@ -27,6 +27,8 @@ before_script:
  - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
  - cd ~/builds/ss
+ - rm -rf ~/builds/ss/kapost-bridge
+ - git clone git://github.com/webbuilders-group/silverstripe-kapost-bridge.git ~/builds/ss/kapost-bridge
 
 script: 
  - phpunit kapost-bridge/tests/KapostServiceTest #We run the Kapost Service Test from the kapost-bridge module to ensure we haven't broken the service
