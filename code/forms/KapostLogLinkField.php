@@ -1,5 +1,6 @@
 <?php
-class KapostLogLinkField extends FormField {
+class KapostLogLinkField extends FormField
+{
     protected $allowHTML=true;
     
     protected $_link;
@@ -12,7 +13,8 @@ class KapostLogLinkField extends FormField {
      * @param {string} $link Link target to use
      * @param {string} $label Link label to use
      */
-    public function __construct($name, $title=null, $link=null, $label=null) {
+    public function __construct($name, $title=null, $link=null, $label=null)
+    {
         parent::__construct($name, $title);
         
         $this->_link=$link;
@@ -23,7 +25,8 @@ class KapostLogLinkField extends FormField {
      * Sets the label to use in the link
      * @param {string} $value
      */
-    public function setLinkLabel($value) {
+    public function setLinkLabel($value)
+    {
         $this->_label=$value;
         return $this;
     }
@@ -32,7 +35,8 @@ class KapostLogLinkField extends FormField {
      * Gets the label to used in the link
      * @return {string}
      */
-    public function getLinkLabel() {
+    public function getLinkLabel()
+    {
         return $this->_label;
     }
     
@@ -40,7 +44,8 @@ class KapostLogLinkField extends FormField {
      * Sets the target of the link
      * @param {string} $value
      */
-    public function setLinkTarget($value) {
+    public function setLinkTarget($value)
+    {
         $this->_link=$value;
         return $this;
     }
@@ -49,7 +54,8 @@ class KapostLogLinkField extends FormField {
      * Gets the target of the link
      * @return {string}
      */
-    public function getLinkTarget() {
+    public function getLinkTarget()
+    {
         return $this->_link;
     }
     
@@ -58,8 +64,9 @@ class KapostLogLinkField extends FormField {
      * @param {array} $properties Properties to add to the field (not used)
      * @return {string}
      */
-    public function Field($properties=null) {
-        if(!empty($this->_link) && !empty($this->_label)) {
+    public function Field($properties=null)
+    {
+        if (!empty($this->_link) && !empty($this->_label)) {
             return '<span id="'.$this->ID().'" class="readonly"><a href="'.Convert::raw2att($this->_link).'" class="cms-panel-link">'.Convert::raw2xml($this->_label).'</a></span>';
         }
     }
@@ -69,8 +76,9 @@ class KapostLogLinkField extends FormField {
      * @param {array} $properties Properties to add to the field holder
      * @return {string}
      */
-    public function FieldHolder($properties=null) {
-        if(!empty($this->_link) && !empty($this->_label)) {
+    public function FieldHolder($properties=null)
+    {
+        if (!empty($this->_link) && !empty($this->_label)) {
             return parent::FieldHolder($properties);
         }
     }
@@ -80,8 +88,9 @@ class KapostLogLinkField extends FormField {
      * @param {array} $properties Properties to add to the field holder
      * @return {string}
      */
-    public function SmallFieldHolder($properties=null) {
-        if(!empty($this->_link) && !empty($this->_label)) {
+    public function SmallFieldHolder($properties=null)
+    {
+        if (!empty($this->_link) && !empty($this->_label)) {
             return parent::SmallFieldHolder($properties);
         }
     }
@@ -90,14 +99,16 @@ class KapostLogLinkField extends FormField {
      * This field has no data so return false
      * @return {bool}
      */
-    public function hasData() {
+    public function hasData()
+    {
         return false;
     }
     
     /**
      * Returns a readonly version of this field
      */
-    public function performReadonlyTransformation() {
+    public function performReadonlyTransformation()
+    {
         $clone=clone $this;
         $clone->setReadonly(true);
         
@@ -108,8 +119,8 @@ class KapostLogLinkField extends FormField {
      * Type of the field is readonly
      * @return {string}
      */
-    public function Type() {
+    public function Type()
+    {
         return 'readonly';
     }
 }
-?>

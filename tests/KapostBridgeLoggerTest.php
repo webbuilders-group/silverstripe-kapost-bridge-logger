@@ -1,5 +1,6 @@
 <?php
-class KapostBridgeLoggerTest extends FunctionalTest {
+class KapostBridgeLoggerTest extends FunctionalTest
+{
     const USER_AGENT='Kapost XMLRPC::Client';
     
     protected static $fixture_file='KapostBridgeLoggerTest.yml';
@@ -8,7 +9,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     /**
      * Test to see that the request/response was actaully logged
      */
-    public function testBridgeLogging() {
+    public function testBridgeLogging()
+    {
         $response=$this->call_service('get-post');
         
         //Ensure we had a 200 response
@@ -41,7 +43,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     /**
      * Tests to verify the password was stripped from the request
      */
-    public function testPasswordStripping() {
+    public function testPasswordStripping()
+    {
         $response=$this->call_service('get-post');
         
         //Ensure we had a 200 response
@@ -67,7 +70,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     /**
      * Tests to verify that the bits of the asset were stripped from the request
      */
-    public function testBitsStripping() {
+    public function testBitsStripping()
+    {
         $response=$this->call_service('new-media-asset');
         
         //Ensure we had a 200 response
@@ -95,7 +99,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
      * @param {string} $mockRequest Mock Request to load
      * @return {SS_HTTPResponse} Response Object
      */
-    protected function call_service($mockRequest) {
+    protected function call_service($mockRequest)
+    {
         return $this->post('kapost-service', array(), array('User-Agent'=>self::USER_AGENT), null, file_get_contents(dirname(__FILE__).'/mock_requests/'.$mockRequest.'.xml'));
     }
     
@@ -104,10 +109,10 @@ class KapostBridgeLoggerTest extends FunctionalTest {
      * @param {string} $body XML Response
      * @return {xmlrpcresp} XML RPC Response Object
      */
-    final protected function parseRPCResponse($body) {
+    final protected function parseRPCResponse($body)
+    {
         $xmlmsg=new xmlrpcmsg('');
         
         return $xmlmsg->parseResponse($body, true, 'phpvals');
     }
 }
-?>

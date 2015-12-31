@@ -1,5 +1,6 @@
 <?php
-class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
+class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider
+{
     private static $menu_icon='kapost-bridge-logger/images/icons/cms-icon.png';
     private static $url_segment='kapost-bridge-logs';
     private static $menu_priority=-0.5;
@@ -14,7 +15,8 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     /**
      * Adds requirements needed for the log viewer
      */
-    public function init() {
+    public function init()
+    {
         parent::init();
         
         Requirements::css('kapost-bridge-logger/css/KapostBridgeLogViewer.css');
@@ -24,9 +26,10 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     /**
      * Gets the form used for viewing a time log
      */
-    public function getEditForm($id=null, $fields=null) {
+    public function getEditForm($id=null, $fields=null)
+    {
         $record=$this->currentPage();
-        if($this->action=='view' && $record) {
+        if ($this->action=='view' && $record) {
             $fields=new FieldList(
                                 new HeaderField('LogHeader', _t('KapostBridgeLogViewer.VIEWING_ENTRY', '_Viewing Log Entry: {datetime}', array('datetime'=>$record->dbObject('Created')->FormatFromSettings())), 3),
                                 new ReadonlyField('Method', _t('KapostBridgeLogViewer.METHOD', '_Method')),
@@ -44,15 +47,15 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
             
             
             $refObj=$record->ReferenceObject;
-            if(!empty($refObj) && $refObj!==false && $refObj->exists()) {
-                if(method_exists($refObj, 'CMSEditLink')) {
+            if (!empty($refObj) && $refObj!==false && $refObj->exists()) {
+                if (method_exists($refObj, 'CMSEditLink')) {
                     $fields->insertBefore(new KapostLogLinkField('CMSEditLink', _t('KapostBridgeLogViewer.REFERENCED_OBJECT', '_Referenced Object'), $refObj->CMSEditLink(), _t('KapostBridgeLogViewer.VIEW_REFERENCED_OBJECT', '_View Referenced Object')), 'RequestData');
-                }else if($refObj instanceof File) {
+                } elseif ($refObj instanceof File) {
                     $refObjLink=Controller::join_links(LeftAndMain::config()->url_base, AssetAdmin::config()->url_segment, 'EditForm/field/File/item', $refObj->ID, 'edit');
                     $fields->insertBefore(new KapostLogLinkField('CMSEditLink', _t('KapostBridgeLogViewer.REFERENCED_OBJECT', '_Referenced Object'), $refObjLink, _t('KapostBridgeLogViewer.VIEW_REFERENCED_OBJECT', '_View Referenced Object')), 'RequestData');
                 }
             }
-        }else {
+        } else {
             $fields=new FieldList();
         }
         
@@ -65,7 +68,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         $form->setAttribute('data-pjax-fragment', 'CurrentForm');
         $form->setHTMLID('Form_EditForm');
         
-        if($record) {
+        if ($record) {
             $form->loadDataFrom($record);
         }
         
@@ -77,11 +80,12 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
      * Handles requests to view logs
      * @return {mixed} Returns PjaxResponseNegotiator if we're using ajax, 404 if we're using ajax and the response cannot be found, redirect if not found in a non-ajax request, and an array if found in an ajax request.
      */
-    public function view() {
+    public function view()
+    {
         //If we're dealing with an ajax request return the form's html
-        if(Director::is_ajax()) {
+        if (Director::is_ajax()) {
             //If the log cannot be found 404
-            if(!$this->currentPage()) {
+            if (!$this->currentPage()) {
                 return $this->httpError(404);
             }
             
@@ -90,7 +94,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         
         
         //If the log cannot be found redirect to the main screen
-        if(!$this->currentPage()) {
+        if (!$this->currentPage()) {
             return $this->redirect($this->Link());
         }
         
@@ -102,7 +106,8 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     /**
      * Form used for displaying the currently logged items
      */
-    public function LogsForm() {
+    public function LogsForm()
+    {
         $fields=new FieldList(
                             DropdownField::create('CalledMethod', _t('KapostBridgeLogViewer.CALLED_METHOD', '_Called Method'), array(
                                                                                     'blogger.getUsersBlogs'=>'blogger.getUsersBlogs',
@@ -140,19 +145,19 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         $getVars=$this->request->getVars();
         
         //Workaround for start date field with no date or time
-        if(array_key_exists('LogStartDate', $getVars)) {
-            if(array_key_exists('date', $getVars['LogStartDate']) && !array_key_exists('time', $getVars['LogStartDate'])) {
+        if (array_key_exists('LogStartDate', $getVars)) {
+            if (array_key_exists('date', $getVars['LogStartDate']) && !array_key_exists('time', $getVars['LogStartDate'])) {
                 $getVars['LogStartDate']['time']='00:00:00';
-            }else if(!array_key_exists('date', $getVars['LogStartDate']) && array_key_exists('time', $getVars['LogStartDate'])) {
+            } elseif (!array_key_exists('date', $getVars['LogStartDate']) && array_key_exists('time', $getVars['LogStartDate'])) {
                 unset($getVars['LogStartDate']); //Remove if there is no date present
             }
         }
         
         //Workaround for end date field with no date or time
-        if(array_key_exists('LogEndDate', $getVars)) {
-            if(array_key_exists('date', $getVars['LogEndDate']) && !array_key_exists('time', $getVars['LogEndDate'])) {
+        if (array_key_exists('LogEndDate', $getVars)) {
+            if (array_key_exists('date', $getVars['LogEndDate']) && !array_key_exists('time', $getVars['LogEndDate'])) {
                 $getVars['LogEndDate']['time']='23:59:59';
-            }else if(!array_key_exists('date', $getVars['LogEndDate']) && array_key_exists('time', $getVars['LogEndDate'])) {
+            } elseif (!array_key_exists('date', $getVars['LogEndDate']) && array_key_exists('time', $getVars['LogEndDate'])) {
                 unset($getVars['LogEndDate']); //Remove if there is no date present
             }
         }
@@ -163,39 +168,41 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         return $form;
     }
 
-	/**
-	 * Renders a panel containing the logs available
-	 * @return {string} HTML to be used in the template
-	 */
-	public function LogsPanel() {
-		return $this->renderWith('KapostBridgeLogViewer_Logs');
-	}
+    /**
+     * Renders a panel containing the logs available
+     * @return {string} HTML to be used in the template
+     */
+    public function LogsPanel()
+    {
+        return $this->renderWith('KapostBridgeLogViewer_Logs');
+    }
     
-	/**
-	 * Gets the logs currently in the database
-	 * @return {DataList} Data List pointing to the logs in the database
-	 */
-    public function getLogs() {
+    /**
+     * Gets the logs currently in the database
+     * @return {DataList} Data List pointing to the logs in the database
+     */
+    public function getLogs()
+    {
         $logs=KapostBridgeLog::get();
         
         $filterFields=$this->LogsForm()->Fields();
         
         //Apply Called Method filter
         $var=$filterFields->dataFieldByName('CalledMethod')->Value();
-        if(!empty($var)) {
+        if (!empty($var)) {
             $logs=$logs->filter('Method', Convert::raw2sql($var));
         }
         
         //Apply Start Date Filter
         $dateTimeField=$filterFields->dataFieldByName('LogStartDate');
         $var=trim($dateTimeField->getDateField()->dataValue().' '.$dateTimeField->getTimeField()->dataValue());
-        if(!empty($var)) {
+        if (!empty($var)) {
             $logs=$logs->filter('Created:GreaterThan', Convert::raw2sql($var));
         }
         
         //Apply End Date Filter
         $var=$filterFields->dataFieldByName('LogEndDate')->Value();
-        if(!empty($var) && $var!=' 00:00:00') {
+        if (!empty($var) && $var!=' 00:00:00') {
             $logs=$logs->filter('Created:LessThan', Convert::raw2sql($var));
         }
         
@@ -206,14 +213,15 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
      * Gets the pjax response negotiator for this controller
      * @return PjaxResponseNegotiator
      */
-    public function getResponseNegotiator() {
-        if(!$this->responseNegotiator) {
+    public function getResponseNegotiator()
+    {
+        if (!$this->responseNegotiator) {
             parent::getResponseNegotiator();
             
             $controller=$this;
-            $this->responseNegotiator->setCallback('LogEntries', function() use(&$controller) {
-                                            						return $controller->renderWith('KapostBridgeLogViewer_LogsList');
-                                            					});
+            $this->responseNegotiator->setCallback('LogEntries', function () use (&$controller) {
+                                                                    return $controller->renderWith('KapostBridgeLogViewer_LogsList');
+                                                                });
         }
         
         return $this->responseNegotiator;
@@ -223,7 +231,8 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
      * Provides the CMS_ACCESS_KapostBridgeLogViewer permission
      * @return {array} Map describing the permission for this cms panel
      */
-    public function providePermissions() {
+    public function providePermissions()
+    {
         return array(
                     'CMS_ACCESS_KapostBridgeLogViewer'=>array(
                                                             'name'=>_t(
@@ -237,4 +246,3 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
                 );
     }
 }
-?>
