@@ -118,8 +118,23 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
                             $endDate=new DatetimeField('LogEndDate', _t('KapostBridgeLogViewer.END_DATE_TIME', '_End Date/Time'))
                         );
         
-        $startDate->getDateField()->setConfig('showcalendar', true);
-        $endDate->getDateField()->setConfig('showcalendar', true);
+        
+        $startDate->getDateField()->setConfig('showcalendar', true)
+                                    ->setAttribute('placeholder', _t('KapostBridgeLogViewer.DATE_FORMAT', '_MMM d, y'))
+                                    ->setDescription(_t('KapostBridgeLogViewer.DATE_FORMAT_DESC', '_e.g. Jan 27, 2016'));
+        
+        $startDate->getTimeField()
+                                ->setAttribute('placeholder', _t('KapostBridgeLogViewer.TIME_FORMAT', '_h:mm:ss a'))
+                                ->setDescription(_t('KapostBridgeLogViewer.TIME_FORMAT_DESC', '_e.g. 12:15:13 PM'));
+        
+        
+        $endDate->getDateField()->setConfig('showcalendar', true)
+                                ->setAttribute('placeholder', _t('KapostBridgeLogViewer.DATE_FORMAT', '_MMM d, y'))
+                                ->setDescription(_t('KapostBridgeLogViewer.DATE_FORMAT_DESC', '_e.g. Jan 27, 2016'));
+        
+        $endDate->getTimeField()
+                                ->setAttribute('placeholder', _t('KapostBridgeLogViewer.TIME_FORMAT', '_h:mm:ss a'))
+                                ->setDescription(_t('KapostBridgeLogViewer.TIME_FORMAT_DESC', '_e.g. 12:15:13 PM'));
         
         
         $actions=new FieldList(
