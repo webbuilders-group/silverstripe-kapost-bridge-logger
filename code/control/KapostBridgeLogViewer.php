@@ -1,6 +1,5 @@
 <?php
 class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
-    private static $menu_icon='kapost-bridge-logger/images/icons/cms-icon.png';
     private static $url_segment='kapost-bridge-logs';
     private static $menu_priority=-0.5;
     private static $tree_class='KapostBridgeLog';
@@ -9,6 +8,8 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     private static $allowed_actions=array(
                                         'view'
                                     );
+    
+    private $_menu_updated=false;
     
     
     /**
@@ -97,6 +98,27 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         
         //Other wise render normally
         return array();
+    }
+    
+    public function MainMenu($cached=true) {
+        $menu=parent::MainMenu($cached);
+        
+        if(!$cached || !$this->_menu_updated) {
+            $item=$this->_cache_MainMenu->find('Code', 'KapostAdmin');
+            if($item) {
+                $item->LinkingMode='current';
+            }
+        }
+        
+        return $menu;
+    }
+    
+    /**
+     * Current menu item is the KapostAdmin
+     * @return {ArrayData}
+     */
+    public function MenuCurrentItem() {
+        return $this->MainMenu()->find('Code', 'KapostAdmin');
     }
     
     /**
@@ -232,6 +254,20 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         }
         
         return $this->responseNegotiator;
+    }
+    
+    public function Breadcrumbs($unlinked=false) {
+        $sng=singleton('KapostAdmin');
+        $crumbs=new ArrayList(array(
+                                    new ArrayData(array(
+                                        				'Title'=>$sng->SectionTitle(),
+                                        				'Link'=>($unlinked ? false:$sng->Link())
+                                        			))
+                                ));
+        
+        $crumbs->merge(parent::Breadcrumbs($unlinked));
+        
+        return $crumbs;
     }
     
     /**
