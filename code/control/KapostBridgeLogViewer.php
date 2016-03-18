@@ -1,7 +1,6 @@
 <?php
 class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     private static $url_segment='kapost-bridge-logs';
-    private static $menu_priority=-0.5;
     private static $tree_class='KapostBridgeLog';
     private static $log_page_length=20;
     
