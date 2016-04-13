@@ -8,7 +8,7 @@ A wrapper for our SilverStripe Kapost Bridge module that logs all incoming reque
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe CMS 3.1.x
+* SilverStripe CMS 3.1+
 * [Kapost Bridge](https://github.com/webbuilders-group/silverstripe-kapost-bridge)
 
 
