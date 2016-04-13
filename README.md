@@ -36,3 +36,7 @@ KapostBridgeLogViewer:
 
 ## Extension Points
 There is one extension point that allows you to hook into the lookup process for the destination object. This extension point is called ``updateObjectLookup`` and is on the KapostBridgeLog class. The extension point is given one argument which is the Kapost Reference ID. Extensions using this extension point should return an object (or null) with the CMSEditLink method defined if you want a link to appear on the log. The CMSEditLink method must return a url to the edit page for that object. The first extension to return an object is used.
+
+
+## Documentation
+Additional documentation for the module can be found [here](docs/en).
