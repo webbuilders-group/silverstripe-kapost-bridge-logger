@@ -135,7 +135,7 @@ class KapostBridgeLog extends DataObject {
                     $extensionResult=array_filter($this->extend('updateObjectLookup', $kapostRefID), function($item) {return is_object($item);});
                     $extensionResult=array_shift($extensionResult);
                     if(!empty($extensionResult) && $extensionResult!==false && $extensionResult->exists()) {
-                        $this->reference_object=$kapostObj;
+                        $this->reference_object=$extensionResult;
                     }else {
                         //Look for a kapost object that is not a preview
                         $kapostObj=KapostObject::get()->filter('KapostRefID', Convert::raw2sql($kapostRefID))->first();
