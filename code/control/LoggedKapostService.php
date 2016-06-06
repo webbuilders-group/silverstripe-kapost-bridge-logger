@@ -11,7 +11,7 @@ class LoggedKapostService extends KapostService {
         
         //Log Request
         try {
-            $xml=simplexml_load_string($this->request->getBody());
+            $xml=@simplexml_load_string($this->request->getBody());
             if($xml) {
                 //Strip sensitive info from request
                 if(strpos($xml->methodName, 'metaWeblog.')===0 || strpos($xml->methodName, 'kapost.')===0) {
@@ -25,12 +25,19 @@ class LoggedKapostService extends KapostService {
                 
                 
                 //Write a log entry
-                $logEntry=new KapostBridgeLog();
-                $logEntry->Method=$xml->methodName->__toString();
-                $logEntry->Request=$xml->asXML();
-                $logEntry->Response=($response instanceof SS_HTTPResponse ? $this->cleanDebugInfo($response->getBody()):(is_string($response) ? $this->cleanDebugInfo($response):null));
-                $logEntry->write();
+                $methodName=$xml->methodName->__toString();
+                $requestXML=$xml->asXML();
+            }else {
+                $methodName='Unknown Method';
+                $requestXML='Request Parsing Error';
             }
+            
+            //Write a log entry
+            $logEntry=new KapostBridgeLog();
+            $logEntry->Method=$methodName;
+            $logEntry->Request=$requestXML;
+            $logEntry->Response=($response instanceof SS_HTTPResponse ? $this->cleanDebugInfo($response->getBody()):(is_string($response) ? $this->cleanDebugInfo($response):null));
+            $logEntry->write();
         }catch(Exception $e) {}
         
         
