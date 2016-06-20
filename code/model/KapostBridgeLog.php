@@ -3,7 +3,8 @@ class KapostBridgeLog extends DataObject {
     private static $db=array(
                             'Method'=>'Varchar(100)',
                             'Request'=>'Text',
-                            'Response'=>'Text'
+                            'Response'=>'Text',
+                            'UserAgent'=>'Text'
                          );
     
     private static $default_sort='Created DESC, ID DESC';

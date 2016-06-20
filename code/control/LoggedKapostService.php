@@ -37,6 +37,7 @@ class LoggedKapostService extends KapostService {
             $logEntry->Method=$methodName;
             $logEntry->Request=$requestXML;
             $logEntry->Response=($response instanceof SS_HTTPResponse ? $this->cleanDebugInfo($response->getBody()):(is_string($response) ? $this->cleanDebugInfo($response):null));
+            $logEntry->UserAgent=$request->getHeader('User-Agent');
             $logEntry->write();
         }catch(Exception $e) {}
         

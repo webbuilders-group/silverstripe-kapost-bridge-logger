@@ -29,6 +29,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
         if($this->action=='view' && $record) {
             $fields=new FieldList(
                                 new HeaderField('LogHeader', _t('KapostBridgeLogViewer.VIEWING_ENTRY', '_Viewing Log Entry: {datetime}', array('datetime'=>$record->dbObject('Created')->FormatFromSettings())), 3),
+                                new ReadonlyField('UserAgent', _t('KapostBridgeLogViewer.USER_AGENT', '_Requestor User Agent')),
                                 new ReadonlyField('Method', _t('KapostBridgeLogViewer.METHOD', '_Method')),
                                 ToggleCompositeField::create('RequestData', _t('KapostBridgeLogViewer.KAPOST_REQUEST', '_Kapost Request'), new FieldList(
                                                                                                 ReadonlyField::create('RequestFormatted', '')

@@ -23,6 +23,7 @@ en:
         TIME_FORMAT_DESC: "e.g. 12:15:13 PM"
         REQUEST_PARSE_ERROR: "Could not Parse Request"
         RESPONSE_PARSE_ERROR: "Could not Parse Response"
+        USER_AGENT: "Requestor User Agent"
     LoggedKapostService:
         PASSWORD_FILTERED: "PASSWORD FILTERED"
         BITS_FILTERED: "BASE64 BITS FILTERED"
