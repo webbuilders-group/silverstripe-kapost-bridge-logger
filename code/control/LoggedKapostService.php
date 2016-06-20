@@ -1,6 +1,14 @@
 <?php
 class LoggedKapostService extends KapostService {
     /**
+     * Whether or not to ignore 404 errors
+     * @config LoggedKapostService.ignore_not_found
+     * @default true
+     */
+    private static $ignore_not_found=true;
+    
+    
+    /**
      * Intercepts the result of Controller::handleRequest() to log the values into the database
      * @param {SS_HTTPRequest} $request The SS_HTTPRequest object that is responsible for distributing request parsing.
 	 * @return {SS_HTTPResponse} The response that this controller produces, including HTTP headers such as redirection info
@@ -31,6 +39,13 @@ class LoggedKapostService extends KapostService {
                 $methodName=_t('LoggedKapostService.UNKNOWN_METHOD', '_Unknown Method');
                 $requestXML=_t('LoggedKapostService.REQUEST_PARSE_ERROR', '_Request Parsing Error');
             }
+            
+            
+            //If the ignore not found configuration option is set to true and the response is a 404 do not log
+            if($this->config()->ignore_not_found && $response instanceof SS_HTTPResponse && $response->getStatusCode()==404) {
+                return $response;
+            }
+            
             
             //Write a log entry
             $logEntry=new KapostBridgeLog();

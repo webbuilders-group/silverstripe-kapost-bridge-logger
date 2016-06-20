@@ -32,6 +32,9 @@ KapostBridgeLog:
 
 KapostBridgeLogViewer:
     log_page_length: 20 #Number of logs to include per page
+
+LoggedKapostService:
+    ignore_not_found: true #Whether to log 404 errors for example when the request is not post or user agent checking is enabled and does not match
 ```
 
 ## Extension Points
