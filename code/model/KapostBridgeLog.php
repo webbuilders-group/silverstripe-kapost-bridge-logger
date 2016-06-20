@@ -57,7 +57,9 @@ class KapostBridgeLog extends DataObject {
             $doc=new DomDocument('1.0');
             $doc->preserveWhiteSpace=false;
             $doc->formatOutput=true;
-            $doc->loadXML($request);
+            if(!@$doc->loadXML($request)) {
+                return _t('KapostBridgeLogViewer.REQUEST_PARSE_ERROR', '_Could not Parse Request');
+            }
             
             return $doc->saveXML();
         }
@@ -73,7 +75,9 @@ class KapostBridgeLog extends DataObject {
             $doc=new DomDocument('1.0');
             $doc->preserveWhiteSpace=false;
             $doc->formatOutput=true;
-            $doc->loadXML($response);
+            if(!@$doc->loadXML($response)) {
+                return _t('KapostBridgeLogViewer.RESPONSE_PARSE_ERROR', '_Could not Parse Response');
+            }
             
             return $doc->saveXML();
         }

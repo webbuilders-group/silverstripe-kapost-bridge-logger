@@ -21,6 +21,10 @@ en:
         DATE_FORMAT_DESC: "e.g. Jan 27, 2016"
         TIME_FORMAT: "h:mm:ss a"
         TIME_FORMAT_DESC: "e.g. 12:15:13 PM"
+        REQUEST_PARSE_ERROR: "Could not Parse Request"
+        RESPONSE_PARSE_ERROR: "Could not Parse Response"
     LoggedKapostService:
         PASSWORD_FILTERED: "PASSWORD FILTERED"
         BITS_FILTERED: "BASE64 BITS FILTERED"
+        UNKNOWN_METHOD: "Unknown Method"
+        REQUEST_PARSE_ERROR: "Request Parsing Error"

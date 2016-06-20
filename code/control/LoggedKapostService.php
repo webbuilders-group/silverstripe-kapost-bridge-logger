@@ -28,8 +28,8 @@ class LoggedKapostService extends KapostService {
                 $methodName=$xml->methodName->__toString();
                 $requestXML=$xml->asXML();
             }else {
-                $methodName='Unknown Method';
-                $requestXML='Request Parsing Error';
+                $methodName=_t('LoggedKapostService.UNKNOWN_METHOD', '_Unknown Method');
+                $requestXML=_t('LoggedKapostService.REQUEST_PARSE_ERROR', '_Request Parsing Error');
             }
             
             //Write a log entry
