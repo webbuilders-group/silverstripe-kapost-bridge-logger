@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.2.4](https://github.com/webbuilders-group/silverstripe-kapost-bridge-logger/tree/0.2.4) (2016-10-24)
+[Full Changelog](https://github.com/webbuilders-group/silverstripe-kapost-bridge-logger/compare/0.2.3...0.2.4)
+
 ## [0.2.3](https://github.com/webbuilders-group/silverstripe-kapost-bridge-logger/tree/0.2.3) (2016-06-20)
 [Full Changelog](https://github.com/webbuilders-group/silverstripe-kapost-bridge-logger/compare/0.2.2...0.2.3)
 
