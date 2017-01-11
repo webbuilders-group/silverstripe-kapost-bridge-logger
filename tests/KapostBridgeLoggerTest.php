@@ -102,10 +102,10 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     /**
      * Parses the response from the api
      * @param {string} $body XML Response
-     * @return {xmlrpcresp} XML RPC Response Object
+     * @return {PhpXmlRpc\Request} XML RPC Response Object
      */
     final protected function parseRPCResponse($body) {
-        $xmlmsg=new xmlrpcmsg('');
+        $xmlmsg=new PhpXmlRpc\Request('');
         
         return $xmlmsg->parseResponse($body, true, 'phpvals');
     }
