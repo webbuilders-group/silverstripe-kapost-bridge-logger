@@ -17,7 +17,7 @@
         "php": ">=5.3.2",
         "silverstripe/framework": "~3.1",
         "silverstripe/cms": "~3.1",
-        "webbuilders-group/silverstripe-kapost-bridge": "~0.7",
+        "webbuilders-group/silverstripe-kapost-bridge": "~0.9",
         "composer/installers": "*"
     },
     "support": {
