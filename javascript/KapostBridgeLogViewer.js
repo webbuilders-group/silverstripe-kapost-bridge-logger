@@ -47,6 +47,35 @@
             }
         });
         
+        $('.KapostBridgeLogViewer .kapost-logs-list .cms-panel-content .cms-panel-header .refresh-logs').entwine({
+            onclick: function(e) {
+                var self=$(this);
+                var panel=$(this).closest('.cms-content-tools');
+                
+                self.blur();
+                
+                panel.addClass('loading');
+                
+                $.ajax({
+                    url: self.attr('href'),
+                    headers: {
+                        'X-Pjax': 'LogEntries'
+                    },
+                    success: function(data) {
+                        panel.find(' .cms-panel-content .logs').replaceWith(data.LogEntries);
+                        
+                        panel.removeClass('loading');
+                    },
+                    error: function(xhr, status, error) {
+                        $('.cms-container').trigger('loadfragmenterror', {xhr: xhr, status: status, error: error});
+                        
+                        panel.removeClass('loading');
+                    }
+                });
+                
+                return false;
+            }
+        });
         
         $('.KapostBridgeLogViewer .cms-content-tools .log-search-form').entwine({
             onsubmit: function(e) {

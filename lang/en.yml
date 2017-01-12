@@ -24,6 +24,7 @@ en:
         REQUEST_PARSE_ERROR: "Could not Parse Request"
         RESPONSE_PARSE_ERROR: "Could not Parse Response"
         USER_AGENT: "Requestor User Agent"
+        REFRESH: "Refresh"
     LoggedKapostService:
         PASSWORD_FILTERED: "PASSWORD FILTERED"
         BITS_FILTERED: "BASE64 BITS FILTERED"

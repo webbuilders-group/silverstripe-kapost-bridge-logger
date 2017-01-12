@@ -10,6 +10,31 @@
     margin-right: 0px;
 }
 
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-header .refresh-logs {
+    float: right;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-header .refresh-logs .ui-button-text {
+    padding: 0.2em 0.5em 0.2em 2.1em;
+}
+
+.KapostBridgeLogViewer .cms-content-tools .cms-panel-header:after {
+    clear: both;
+    
+    display: block;
+    
+    content: ' ';
+    
+    width: 0;
+    height: 0;
+    
+    font-size: 0;
+    
+    line-height: 0;
+    
+    visibility: hidden;
+}
+
 .KapostBridgeLogViewer .cms-content-tools ul.logs {
     margin: 8px -4px;
 }
