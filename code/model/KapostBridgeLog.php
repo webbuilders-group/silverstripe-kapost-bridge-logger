@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class KapostBridgeLog
+ *
+ * @property string $Method
+ * @property string $Request
+ * @property string $Response
+ * @property string $UserAgent
+ * @mixin LenovoKapostBridgeLog
+ */
 class KapostBridgeLog extends DataObject {
     private static $db=array(
                             'Method'=>'Varchar(100)',

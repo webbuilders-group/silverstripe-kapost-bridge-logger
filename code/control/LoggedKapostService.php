@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class LoggedKapostService
+ *
+ */
 class LoggedKapostService extends KapostService {
     /**
      * Whether or not to ignore 404 errors

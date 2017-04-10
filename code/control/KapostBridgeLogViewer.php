@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class KapostBridgeLogViewer
+ *
+ */
 class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     private static $url_segment='kapost-bridge-logs';
     private static $tree_class='KapostBridgeLog';
