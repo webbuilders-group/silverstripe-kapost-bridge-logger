@@ -1,7 +1,7 @@
 <% if $Logs %>
     <ul class="logs">
         <% loop $Logs %>
-            <li><a href="$Top.Link('view')/$ID" class="cms-panel-link<% if $Top.currentPageID==$ID %> current<% end_if %>" data-pjax-target="CurrentForm,Breadcrumbs">$Method.XML<br /><span>$Created.FormatFromSettings</span></a></li>
+            <li><a href="$CMSEditLink" class="cms-panel-link<% if $Top.currentPageID==$ID %> current<% end_if %>" data-pjax-target="CurrentForm,Breadcrumbs">$Method.XML<br /><span>$Created.FormatFromSettings</span></a></li>
         <% end_loop %>
     </ul>
     

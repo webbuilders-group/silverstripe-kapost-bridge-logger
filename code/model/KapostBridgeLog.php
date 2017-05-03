@@ -169,5 +169,13 @@ class KapostBridgeLog extends DataObject {
         
         return $this->reference_object;
     }
+    
+    /**
+     * Gets the link to view this log entry
+     * @return string
+     */
+    public function CMSEditLink() {
+        return Controller::join_links(LeftAndMain::config()->url_base, KapostBridgeLogViewer::config()->url_segment, 'view', $this->ID);
+    }
 }
 ?>
