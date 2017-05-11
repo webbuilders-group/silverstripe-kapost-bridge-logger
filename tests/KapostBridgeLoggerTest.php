@@ -6,6 +6,22 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     
     
     /**
+     * Test that 404's are ignored
+     */
+    public function testIgnorePageNotFound() {
+        //Try just a get
+        $response=$this->get('/kapost-service');
+        $this->assertEquals(404, $response->getStatusCode());
+        $this->assertEquals(0, KapostBridgeLog::get()->count());
+        
+        
+        //Try just a post
+        $response=$this->post('/kapost-bridge', array());
+        $this->assertEquals(404, $response->getStatusCode());
+        $this->assertEquals(0, KapostBridgeLog::get()->count());
+    }
+    
+    /**
      * Test to see that the request/response was actaully logged
      */
     public function testBridgeLogging() {
@@ -92,8 +108,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     
     /**
      * Calls the api and returns the response
-     * @param {string} $mockRequest Mock Request to load
-     * @return {SS_HTTPResponse} Response Object
+     * @param string $mockRequest Mock Request to load
+     * @return SS_HTTPResponse Response Object
      */
     protected function call_service($mockRequest) {
         return $this->post('kapost-service', array(), array('User-Agent'=>self::USER_AGENT), null, file_get_contents(dirname(__FILE__).'/mock_requests/'.$mockRequest.'.xml'));
@@ -101,8 +117,8 @@ class KapostBridgeLoggerTest extends FunctionalTest {
     
     /**
      * Parses the response from the api
-     * @param {string} $body XML Response
-     * @return {PhpXmlRpc\Request} XML RPC Response Object
+     * @param string $body XML Response
+     * @return PhpXmlRpc\Request XML RPC Response Object
      */
     final protected function parseRPCResponse($body) {
         $xmlmsg=new PhpXmlRpc\Request('');

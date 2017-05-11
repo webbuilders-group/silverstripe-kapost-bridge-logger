@@ -80,7 +80,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     
     /**
      * Handles requests to view logs
-     * @return {mixed} Returns PjaxResponseNegotiator if we're using ajax, 404 if we're using ajax and the response cannot be found, redirect if not found in a non-ajax request, and an array if found in an ajax request.
+     * @return mixed Returns PjaxResponseNegotiator if we're using ajax, 404 if we're using ajax and the response cannot be found, redirect if not found in a non-ajax request, and an array if found in an ajax request.
      */
     public function view() {
         //If we're dealing with an ajax request return the form's html
@@ -119,7 +119,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     
     /**
      * Current menu item is the KapostAdmin
-     * @return {ArrayData}
+     * @return ArrayData
      */
     public function MenuCurrentItem() {
         return $this->MainMenu()->find('Code', 'KapostAdmin');
@@ -206,7 +206,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
 
 	/**
 	 * Renders a panel containing the logs available
-	 * @return {string} HTML to be used in the template
+	 * @return string HTML to be used in the template
 	 */
 	public function LogsPanel() {
 		return $this->renderWith('KapostBridgeLogViewer_Logs');
@@ -214,7 +214,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     
 	/**
 	 * Gets the logs currently in the database
-	 * @return {DataList} Data List pointing to the logs in the database
+	 * @return DataList Data List pointing to the logs in the database
 	 */
     public function getLogs() {
         $logs=KapostBridgeLog::get();
@@ -276,7 +276,7 @@ class KapostBridgeLogViewer extends LeftAndMain implements PermissionProvider {
     
     /**
      * Provides the CMS_ACCESS_KapostBridgeLogViewer permission
-     * @return {array} Map describing the permission for this cms panel
+     * @return array Map describing the permission for this cms panel
      */
     public function providePermissions() {
         return array(

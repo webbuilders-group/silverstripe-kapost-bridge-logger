@@ -36,7 +36,7 @@ class KapostBridgeLog extends DataObject {
     
     /**
      * Gets the title of this log which is a combination of the method called and the date/time
-     * @return {string} Title of the log entry
+     * @return string Title of the log entry
      */
     public function getTitle() {
         return $this->Method.': '.$this->dbObject('Created')->FormatFromSettings();
@@ -59,7 +59,7 @@ class KapostBridgeLog extends DataObject {
     
     /**
      * Gets the request formatted with line breaks
-     * @return {string} Raw XML Request from Kapost
+     * @return string Raw XML Request from Kapost
      */
     public function getRequestFormatted() {
         $request=$this->Request;
@@ -77,7 +77,7 @@ class KapostBridgeLog extends DataObject {
     
     /**
      * Gets the response formatted with line breaks
-     * @return {string} Raw XML Response from SilverStripe
+     * @return string Raw XML Response from SilverStripe
      */
     public function getResponseFormatted() {
         $response=$this->Response;

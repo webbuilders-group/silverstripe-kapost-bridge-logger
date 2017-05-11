@@ -14,8 +14,8 @@ class LoggedKapostService extends KapostService {
     
     /**
      * Intercepts the result of Controller::handleRequest() to log the values into the database
-     * @param {SS_HTTPRequest} $request The SS_HTTPRequest object that is responsible for distributing request parsing.
-	 * @return {SS_HTTPResponse} The response that this controller produces, including HTTP headers such as redirection info
+     * @param SS_HTTPRequest $request The SS_HTTPRequest object that is responsible for distributing request parsing.
+	 * @return SS_HTTPResponse The response that this controller produces, including HTTP headers such as redirection info
      */
     public function handleRequest(SS_HTTPRequest $request, DataModel $model) {
         $response=parent::handleRequest($request, $model);
@@ -66,8 +66,8 @@ class LoggedKapostService extends KapostService {
     
     /**
      * Strips the server debug information from the log
-     * @param {string} $xml XML String to be parsed
-     * @return {string} XML String with the debug info stripped out
+     * @param string $xml XML String to be parsed
+     * @return string XML String with the debug info stripped out
      */
     protected function cleanDebugInfo($xml) {
         return preg_replace('/<\!-- SERVER DEBUG INFO \(BASE64 ENCODED\)\:(\s+)([A-Za-z0-9\/=+]*)(\s+)-->/s', '', $xml);
